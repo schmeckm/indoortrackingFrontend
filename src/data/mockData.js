@@ -75,6 +75,39 @@ export const mockDataTeam = [
   },
 ];
 
+export const SAPLocation = [
+  {
+    id: 1,
+    sap_name: "0001",
+    name: "Production_Linie 1",
+  },
+  {
+    id: 2,
+    sap_name: "0002",
+    name: "Production_Linie 2",
+
+  },
+  {
+    id: 3,
+    sap_name: "0003",
+    name: "Production_Wareneingang",
+
+  },
+  {
+    id: 4,
+    sap_name: "0004",
+    name: "Production_Warenausgang",
+
+  },
+  {
+    id: 5,
+    sap_name: "0005",
+    name: "Production_Auftauung",
+  },
+
+];
+
+
 export const mockDataContacts = [
   {
     id: 1,
