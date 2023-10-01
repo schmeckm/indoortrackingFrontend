@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from "react";
 import { Routes, Route, useNavigate} from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
@@ -12,10 +11,6 @@ import Gateways from "./scenes/gateways";
 import Beacons from "./scenes/beacons";
 import Position from "./scenes/position";
 import PositionA from "./scenes/postionall";
-<<<<<<< HEAD
-import Temperature from "./scenes/linedate";
-=======
->>>>>>> e3fe1f3e2d6036549943ac4022aecdf33536681b
 import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
@@ -25,10 +20,7 @@ import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import MapPage from './scenes/position/MapPage';
-<<<<<<< HEAD
-=======
 
->>>>>>> e3fe1f3e2d6036549943ac4022aecdf33536681b
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -51,10 +43,6 @@ function App() {
               <Route path="/beacon" element={<Beacons  />} />
               <Route path="/position" element={<Position  />} />
               <Route path="/positionall" element={<PositionA  />} />
-<<<<<<< HEAD
-              <Route path="/temperature" element={<Temperature  />} />
-=======
->>>>>>> e3fe1f3e2d6036549943ac4022aecdf33536681b
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/form" element={<Form />} />
               <Route path="/bar" element={<Bar />} />

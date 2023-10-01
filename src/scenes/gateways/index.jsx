@@ -18,7 +18,11 @@ import { tokens } from "../../theme";
 import axios from "axios";
 import Header from "../../components/Header";
 import { SAPLocation } from "../../data/mockData";
+<<<<<<< HEAD
 const API_URL = "http://34.27.176.104:3002/api/gateway";
+=======
+const API_URL = "http://35.193.167.197:3002/api/gateway";
+>>>>>>> e3fe1f3e2d6036549943ac4022aecdf33536681b
 
 
 const Gateway = () => {
