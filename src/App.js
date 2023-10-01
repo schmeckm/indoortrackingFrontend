@@ -1,11 +1,18 @@
+import React from 'react';
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate} from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import Team from "./scenes/team";
-import Invoices from "./scenes/invoices";
 import Contacts from "./scenes/contacts";
+import Environment from "./scenes/Environment";
+import EnvironmentDetail from "./scenes/Environment/EnvironmentDetail"
+import Gateways from "./scenes/gateways";
+import Beacons from "./scenes/beacons";
+import Position from "./scenes/position";
+import PositionA from "./scenes/postionall";
+import Temperature from "./scenes/linedate";
 import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
@@ -14,7 +21,7 @@ import FAQ from "./scenes/faq";
 import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
-import Calendar from "./scenes/calendar/calendar";
+import MapPage from './scenes/position/MapPage';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -31,15 +38,21 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
+              <Route path="/environment" element={<Environment />} />
+              <Route path="/gateways" element={<Gateways />} />
+              <Route path="/environmentDetail/:id" element={<EnvironmentDetail />} />
+              <Route path="/beacon" element={<Beacons  />} />
+              <Route path="/position" element={<Position  />} />
+              <Route path="/positionall" element={<PositionA  />} />
+              <Route path="/temperature" element={<Temperature  />} />
               <Route path="/contacts" element={<Contacts />} />
-              <Route path="/invoices" element={<Invoices />} />
               <Route path="/form" element={<Form />} />
               <Route path="/bar" element={<Bar />} />
               <Route path="/pie" element={<Pie />} />
               <Route path="/line" element={<Line />} />
               <Route path="/faq" element={<FAQ />} />
-              <Route path="/calendar" element={<Calendar />} />
               <Route path="/geography" element={<Geography />} />
+              <Route path="/map" element={<MapPage />} />
             </Routes>
           </main>
         </div>
@@ -47,5 +60,4 @@ function App() {
     </ColorModeContext.Provider>
   );
 }
-
 export default App;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
@@ -9,7 +10,13 @@ import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import MapIcon from '@mui/icons-material/Map';
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import RouterIcon from '@mui/icons-material/Router';
+import BeaconIcon from '@mui/icons-material/Bluetooth';
+import RadarIcon from '@mui/icons-material/Radar';
+import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
@@ -59,6 +66,19 @@ const Sidebar = () => {
         "& .pro-menu-item.active": {
           color: "#6870fa !important",
         },
+        "& .pro-sidebar.collapsed": {
+          width: "72px !important",
+        },
+        "& .pro-sidebar.collapsed .pro-inner-item": {
+          justifyContent: "center !important",
+        },
+        "& .pro-sidebar.collapsed .pro-menu-item": {
+          justifyContent: "center !important",
+        },
+        "& .pro-sidebar.collapsed .pro-icon-wrapper": {
+          marginLeft: "0 !important",
+          marginRight: "0 !important",
+        },
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
@@ -102,15 +122,15 @@ const Sidebar = () => {
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  M.Schmeckenbecher
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                <Typography variant="h3" color={colors.greenAccent[500]}>
+                  VP SCHMECKM
                 </Typography>
               </Box>
             </Box>
@@ -124,7 +144,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -133,9 +152,44 @@ const Sidebar = () => {
               Data
             </Typography>
             <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
+              title="Manage Environment"
+              to="/environment"
+              icon={<MapIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Manage Gateways"
+              to="/gateways"
+              icon={<RouterIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Manage Beacons"
+              to="/beacon"
+              icon={<BeaconIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Display filtered Position"
+              to="/position"
+              icon={<FilterListIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Display Beacon "
+              to="/positionALL"
+              icon={<RadarIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+              <Item
+              title="Display Temperature "
+              to="/temperature"
+              icon={<DeviceThermostatIcon/>}
               selected={selected}
               setSelected={setSelected}
             />
