@@ -25,10 +25,6 @@ import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import MapPage from './scenes/position/MapPage';
-<<<<<<< HEAD
-=======
-
->>>>>>> e3fe1f3e2d6036549943ac4022aecdf33536681b
 
 function App() {
   const [theme, colorMode] = useMode();
