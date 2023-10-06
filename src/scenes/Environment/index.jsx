@@ -13,8 +13,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import axios from "axios";
 import Header from "../../components/Header";
-
 import { useNavigate } from "react-router-dom";
+
 const API_URL = "http://34.27.176.104:3002/api/environment";
 
 const Environment = () => {
