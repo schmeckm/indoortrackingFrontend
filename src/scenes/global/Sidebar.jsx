@@ -15,10 +15,7 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import RouterIcon from '@mui/icons-material/Router';
 import BeaconIcon from '@mui/icons-material/Bluetooth';
 import RadarIcon from '@mui/icons-material/Radar';
-<<<<<<< HEAD
 import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
-=======
->>>>>>> e3fe1f3e2d6036549943ac4022aecdf33536681b
 import FilterListIcon from '@mui/icons-material/FilterList';
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
@@ -186,7 +183,6 @@ const Sidebar = () => {
               title="Display Beacon "
               to="/positionALL"
               icon={<RadarIcon />}
-<<<<<<< HEAD
               selected={selected}
               setSelected={setSelected}
             />
@@ -194,8 +190,6 @@ const Sidebar = () => {
               title="Display Temperature "
               to="/temperature"
               icon={<DeviceThermostatIcon/>}
-=======
->>>>>>> e3fe1f3e2d6036549943ac4022aecdf33536681b
               selected={selected}
               setSelected={setSelected}
             />

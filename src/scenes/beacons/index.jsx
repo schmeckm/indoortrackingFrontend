@@ -14,12 +14,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import axios from "axios";
 import Header from "../../components/Header";
-
-<<<<<<< HEAD
 const API_URL = "http://34.27.176.104:3002/api/beacon";
-=======
-const API_URL = "http://35.193.167.197:3002/api/beacon";
->>>>>>> e3fe1f3e2d6036549943ac4022aecdf33536681b
 
 const Beacon = () => {
   const theme = useTheme();

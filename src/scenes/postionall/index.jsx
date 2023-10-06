@@ -5,13 +5,7 @@ import { tokens } from "../../theme";
 import axios from "axios";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
-
-<<<<<<< HEAD
 const API_URL = "http://34.27.176.104:3001";
-=======
-const API_URL = "http://35.193.167.197:3001";
->>>>>>> e3fe1f3e2d6036549943ac4022aecdf33536681b
-
 //test
 const PositionALL = () => {
   const theme = useTheme();
