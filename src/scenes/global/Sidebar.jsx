@@ -20,6 +20,8 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
@@ -130,7 +132,6 @@ const Sidebar = () => {
                   M.Schmeckenbecher
                 </Typography>
                 <Typography variant="h3" color={colors.greenAccent[500]}>
-                  VP SCHMECKM
                 </Typography>
               </Box>
             </Box>
@@ -199,7 +200,16 @@ const Sidebar = () => {
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              
             />
+            <Item
+              title="Scanner"
+              to="/geography"
+              icon={<QrCodeScannerIcon  />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -247,13 +257,6 @@ const Sidebar = () => {
               title="Line Chart"
               to="/line"
               icon={<TimelineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Geography Chart"
-              to="/geography"
-              icon={<MapOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

@@ -4,7 +4,7 @@ import { Select, MenuItem, FormControl, InputLabel, TextField } from "@mui/mater
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { differenceInDays } from "date-fns";
-import { timeFormat } from 'd3-time-format'; // Corrected import
+import { timeFormat } from 'd3-time-format';
 
 const API_ENDPOINT_BEACONS = "http://34.27.176.104:3002/api/beacon/getAllBeacons";
 const API_ENDPOINT_TEMPERATURE = "http://34.27.176.104:3002/api/temperature/getTemperaturesBetweenDates";
@@ -48,9 +48,8 @@ const LineChart = () => {
     }, [selectedBeaconMac, startDate, endDate]);
 
     const rangeInDays = differenceInDays(endDate, startDate);
-    const timeFormatter = timeFormat("%H:%M"); // Corrected usage
-    const dateFormatter = timeFormat("%m/%d"); // Corrected usage
-
+    const timeFormatter = timeFormat("%H:%M");
+    const dateFormatter = timeFormat("%m/%d");
     
     let tickValues = "every hour";
     let tickFormat = timeFormatter;
@@ -58,6 +57,34 @@ const LineChart = () => {
     if (rangeInDays > 1) {
         tickValues = "every day";
         tickFormat = dateFormatter;
+    }
+
+    const CustomLayer = ({ yScale, innerWidth }) => {
+        const blueY1 = yScale(-10);
+        const blueY2 = yScale(21);
+        const redY1 = yScale(20);
+        const redY2 = yScale(50);
+    
+        return (
+            <>
+                <rect
+                    x={0}
+                    y={blueY2}
+                    width={innerWidth}
+                    height={blueY1 - blueY2}
+                    fill="blue"
+                    opacity={0.2}
+                />
+                <rect
+                    x={0}
+                    y={redY2}
+                    width={innerWidth}
+                    height={redY1 - redY2}
+                    fill="red"
+                    opacity={0.2}
+                />
+            </>
+        );
     }
 
     return (
@@ -135,6 +162,7 @@ const LineChart = () => {
                     ]}
                     enableGridX
                     enableGridY
+                    layers={['grid', 'axes', CustomLayer, 'lines', 'points', 'slices', 'crosshair']}
                 />
             </div>
         </div>
@@ -142,3 +170,4 @@ const LineChart = () => {
 };
 
 export default LineChart;
+

@@ -1,0 +1,28 @@
+.qr-reader {
+    position: relative;
+    width: 80%;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .qr-reader video {
+    width: 100%;
+    height: auto;
+  }
+  
+  .scanning-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background-color: red;
+    width: 100%;
+    animation: scanLine 3s linear infinite;
+  }
+  
+  @keyframes scanLine {
+    0% { top: 0; }
+    50% { top: 100%; }
+    100% { top: 0; }
+  }
+  
