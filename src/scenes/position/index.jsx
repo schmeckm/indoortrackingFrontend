@@ -6,7 +6,7 @@ import axios from "axios";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import MapPage from "./MapPage";
-const API_URL = "http://34.27.176.104:3002/api";
+const API_URL = "http://localhost:3002/api";
 const Position = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);

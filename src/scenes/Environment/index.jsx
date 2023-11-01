@@ -15,7 +15,7 @@ import axios from "axios";
 import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://34.27.176.104:3002/api/environment";
+const API_URL = "http://104.197.254.149:3002/api/environment";
 
 const Environment = () => {
   const navigate = useNavigate();

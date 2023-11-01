@@ -7,14 +7,20 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 const PieChart = () => {
   const [data, setData] = useState([]);
   const [rawData, setRawData] = useState([]);
-  const [startDate, setStartDate] = useState(new Date("2023-10-01T23:30:00.000Z"));
-  const [endDate, setEndDate] = useState(new Date("2023-10-26T23:30:00.000Z"));
+
+  const today = new Date();
+  const twentyDaysAgo = new Date(today);
+  twentyDaysAgo.setDate(today.getDate() - 30);
+  const [startDate, setStartDate] = useState(twentyDaysAgo);
+  const [endDate, setEndDate] = useState(today);
   const [beacon, setBeacon] = useState("AC233FABE1BA");
+  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`http://localhost:3002/api/temperature/getBeaconDurationInSAPLocation?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&beacon=${beacon}`);
+        console.log(response);
         const result = await response.json();
         if (result.success) {
           setRawData(result.data);

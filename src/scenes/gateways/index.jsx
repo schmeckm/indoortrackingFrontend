@@ -18,7 +18,7 @@ import { tokens } from "../../theme";
 import axios from "axios";
 import Header from "../../components/Header";
 import { SAPLocation } from "../../data/mockData";
-const API_URL = "http://34.27.176.104:3002/api/gateway";
+const API_URL = "http://104.197.254.149:3002/api/gateway";
 const Gateway = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);

@@ -3,18 +3,24 @@ import { ResponsiveLine } from "@nivo/line";
 import { Select, MenuItem, FormControl, InputLabel, TextField } from "@mui/material";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { differenceInDays } from "date-fns";
-import { timeFormat } from 'd3-time-format';
+import { differenceInDays, subDays } from "date-fns"; // Import subDays from date-fns
+import { timeFormat } from 'd3-time-format'; // Import timeFormat from d3-time-format
 
-const API_ENDPOINT_BEACONS = "http://34.27.176.104:3002/api/beacon/getAllBeacons";
-const API_ENDPOINT_TEMPERATURE = "http://34.27.176.104:3002/api/temperature/getTemperaturesBetweenDates";
+const API_ENDPOINT_BEACONS = "http://104.197.254.149:3002/api/beacon/getAllBeacons";
+const API_ENDPOINT_TEMPERATURE = "http://104.197.254.149:3002/api/temperature/getTemperaturesBetweenDates";
 
 const LineChart = () => {
-    const [chartData, setChartData] = useState([]);
-    const [beacons, setBeacons] = useState([]);
-    const [selectedBeaconMac, setSelectedBeaconMac] = useState("");
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+// Initial values for start and end dates
+const initialStartDate = subDays(new Date(), 20); // Start date = today - 20 days
+const initialEndDate = new Date(); // End date = today
+
+const [chartData, setChartData] = useState([]);
+const [beacons, setBeacons] = useState([]);
+const [selectedBeaconMac, setSelectedBeaconMac] = useState("");
+const [startDate, setStartDate] = useState(initialStartDate); // Set initial start date
+const [endDate, setEndDate] = useState(initialEndDate); // Set initial end date
+
+
 
     useEffect(() => {
         fetch(API_ENDPOINT_BEACONS)
