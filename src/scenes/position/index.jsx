@@ -210,7 +210,7 @@ const Position = () => {
     <Box m="20px">
       <Header
         title="Beacons"
-        subtitle="Managing the used Beacons in this scenario"
+        subtitle="Here you you display the position of all your relevant beacons"
       />
       <Button variant="contained" color="success" onClick={fetchData}>
         Refresh Position

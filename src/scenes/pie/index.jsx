@@ -5,7 +5,7 @@ import PieChart from "../../components/PieChart";
 const Pie = () => {
   return (
     <Box m="20px">
-      <Header title="Temperature by location" />
+      <Header title="Temperature by location" subtitle=" Here you find the the duration by your defined SAP Locations" />
       <Box height="75vh">
         <PieChart />
       </Box>

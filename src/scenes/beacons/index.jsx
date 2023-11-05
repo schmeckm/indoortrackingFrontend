@@ -172,7 +172,7 @@ const Beacon = () => {
     <Box m="20px">
       <Header
         title="Beacons"
-        subtitle="Managing the used Beacons in this scenario"
+        subtitle="Here you can find all your defined Beacons"
       />
       <Button
         variant="contained"

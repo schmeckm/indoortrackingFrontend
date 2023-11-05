@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
@@ -6,25 +6,21 @@ import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import MapIcon from '@mui/icons-material/Map';
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import RouterIcon from '@mui/icons-material/Router';
-import BeaconIcon from '@mui/icons-material/Bluetooth';
-import RadarIcon from '@mui/icons-material/Radar';
-import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import MapIcon from "@mui/icons-material/Map";
+import RouterIcon from "@mui/icons-material/Router";
+import BeaconIcon from "@mui/icons-material/Bluetooth";
+import RadarIcon from "@mui/icons-material/Radar";
+import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
-
+import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
+import WebhookIcon from '@mui/icons-material/Webhook';
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -131,8 +127,10 @@ const Sidebar = () => {
                 >
                   M.Schmeckenbecher
                 </Typography>
-                <Typography variant="h3" color={colors.greenAccent[500]}>
-                </Typography>
+                <Typography
+                  variant="h3"
+                  color={colors.greenAccent[500]}
+                ></Typography>
               </Box>
             </Box>
           )}
@@ -150,7 +148,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Data
+              Data Area
             </Typography>
             <Item
               title="Manage Environment"
@@ -166,6 +164,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            
             <Item
               title="Manage Beacons"
               to="/beacon"
@@ -187,10 +186,10 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-              <Item
+            <Item
               title="Display Temperature "
               to="/temperature"
-              icon={<DeviceThermostatIcon/>}
+              icon={<DeviceThermostatIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -200,23 +199,30 @@ const Sidebar = () => {
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-              
             />
             <Item
               title="Scanner"
               to="/geography"
-              icon={<QrCodeScannerIcon  />}
+              icon={<QrCodeScannerIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-
+           
             <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Pages
+              Admin Area
             </Typography>
+            <Item
+              title="Middleware"
+              to="/middleware"
+              icon={<WebhookIcon  />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
             <Item
               title="Profile Form"
               to="/form"

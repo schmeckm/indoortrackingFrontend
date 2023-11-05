@@ -122,7 +122,7 @@ const PositionALL = () => {
     <Box m="20px">
       <Header
         title="Beacons"
-        subtitle="Managing the used Beacons in this scenario"
+        subtitle="Here you can find all the beacons which are being found by your Gateways"
       />
       <Button variant="contained" color="success" onClick={fetchData}>
         Refresh Position
