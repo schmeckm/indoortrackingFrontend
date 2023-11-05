@@ -133,7 +133,7 @@ const LineChart = () => {
     margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
     xScale={{ type: "time", format: "%Y-%m-%d %H:%M:%S", precision: "minute" }}
     xFormat="time:%Y-%m-%d %H:%M:%S"
-    yScale={{ type: "linear", min: "auto", max: "auto", stacked: false, reverse: false }}
+    yScale={{ type: "linear", min: -20, max: 50, stacked: false, reverse: false }}
     yFormat=" >-.2f"
     axisTop={null}
     axisRight={null}
