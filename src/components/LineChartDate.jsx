@@ -124,21 +124,6 @@ const LineChart = () => {
     tickFormat = timeFormat("%b %d");
   }
 
-  const MedianLine = ({ median, yScale, innerWidth }) => {
-    const yValue = yScale(median);
-    return (
-      <line
-        x1={0}
-        x2={innerWidth}
-        y1={yValue}
-        y2={yValue}
-        stroke="magenta"
-        strokeDasharray="3, 3"
-        strokeWidth={2}
-      />
-    );
-  };
-
 
   return (
     <div>

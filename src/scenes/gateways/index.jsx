@@ -29,7 +29,7 @@ const Gateway = () => {
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
   const [detailDialogOpen, setDetailDialogOpen] = useState(false);
-  const [selectedSAPLocation, setSelectedSAPLocation] = useState("");
+  //const [selectedSAPLocation, setSelectedSAPLocation] = useState("");
   const [newGatewayData, setNewGatewayData] = useState({
     gatewayMac: "",
     type: "",
