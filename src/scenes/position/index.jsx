@@ -6,7 +6,11 @@ import axios from "axios";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import MapPage from "./MapPage";
-const API_URL = "http://localhost:3002/api";
+import config from '../../config/config';
+
+
+//console.log(config.BACKEND_URL); // https://api.example.com
+
 const Position = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -16,7 +20,8 @@ const Position = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${API_URL}/position/getPosition`);
+      const response = await axios.get(`${config.BACKEND_URL}/position/getPosition`);
+      console.log(response);
       const beaconData = response.data.data.beacons;
 
       const formattedData = beaconData.map((beacon, index) => {
@@ -199,7 +204,7 @@ const Position = () => {
 
   const handleRowClick = (params) => {
     const { latitude, longitude } = params.row;
-    window.open(`/map?lat=${latitude}&lon=${longitude}`, "_blank");
+    window.open(`/map?lat=${latitude}&lon=${longitude}&view=satellite`, "_blank");
   };
 
   useEffect(() => {
@@ -226,7 +231,23 @@ const Position = () => {
             "& .MuiDataGrid-cell": {
               borderBottom: "none",
             },
-            // ...
+            "& .name-column--cell": {
+              color: colors.greenAccent[300],
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: colors.blueAccent[700],
+              borderBottom: "none",
+            },
+            "& .MuiDataGrid-virtualScroller": {
+              backgroundColor: colors.primary[400],
+            },
+            "& .MuiDataGrid-footerContainer": {
+              borderTop: "none",
+              backgroundColor: colors.blueAccent[700],
+            },
+            "& .MuiCheckbox-root": {
+              color: `${colors.greenAccent[200]} !important`,
+            },
           }}
         >
           <DataGrid

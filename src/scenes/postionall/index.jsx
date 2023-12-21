@@ -5,7 +5,9 @@ import { tokens } from "../../theme";
 import axios from "axios";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
-const API_URL = "http://104.197.254.149:3002";
+import config from '../../config/config';
+
+console.log(config.PARETOANYWHERE_URL); // https://api.example.com
 
 const PositionALL = () => {
   const theme = useTheme();
@@ -19,7 +21,7 @@ const PositionALL = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${API_URL}/context`);
+      const response = await axios.get(`${config.PARETOANYWHERE_URL}/context`);
       const devicesData = response.data.devices;
       const formattedData = Object.keys(devicesData).map((deviceId) => {
         const device = devicesData[deviceId];

@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// scenes/Home.js
+import { Box } from "@mui/material";
+import Header from "../../components/Header";
+import React from 'react';
+import Middleware from '../../components/middleware';
 
-const middleware = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Navigiert innerhalb der Anwendung
-    navigate('/your-internal-route');
-  }, [navigate]);
-
+const Home = () => {
   return (
-    <div>Umleitung...</div>
+    <Box m="20px">
+      <Header title="Middleware Layer" subtitle="Node-Red" />
+      <Box height="75vh">
+      </Box>
+    </Box>
   );
 };
 
-export default middleware;
+export default Middleware;

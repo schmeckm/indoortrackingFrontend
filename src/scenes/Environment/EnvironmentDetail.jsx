@@ -23,7 +23,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@mui/material';
-const API_URL = 'http://104.197.254.149:3002/api/environment';
+const API_URL = 'http://192.168.1.128:3002/api/environment';
 
 const useStyles = makeStyles((theme) => ({
   searchField: {

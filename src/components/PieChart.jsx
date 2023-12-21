@@ -3,6 +3,8 @@ import { ResponsivePie } from "@nivo/pie";
 import { TextField } from "@mui/material";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import config from '../config/config';
+console.log(config.BACKEND_URL); // https://api.example.com
 
 const PieChart = () => {
   const [data, setData] = useState([]);
@@ -19,8 +21,7 @@ const PieChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3002/api/temperature/getBeaconDurationInSAPLocation?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&beacon=${beacon}`);
-        console.log(response);
+        const response = await fetch(`${config.BACKEND_URL}/temperature/getBeaconDurationInSAPLocation?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&beacon=${beacon}`);
         const result = await response.json();
         if (result.success) {
           setRawData(result.data);

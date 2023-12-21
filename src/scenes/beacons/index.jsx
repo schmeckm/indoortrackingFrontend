@@ -14,8 +14,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import axios from "axios";
 import Header from "../../components/Header";
-const API_URL = "http://104.197.254.149:3002/api/beacon";
-
+const API_URL = "http://192.168.1.128:3002/api/beacon";
 const Beacon = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -366,7 +365,8 @@ const Beacon = () => {
         <DialogTitle>Beacon Details</DialogTitle>
         <DialogContent>
         <Box>
-      <strong>Beacon Mac:</strong> {selectedBeacon && selectedBeacon.beaconMac}
+        <strong>Beacon Mac:</strong> {selectedBeacon && selectedBeacon.beaconMac.toLowerCase()}
+
     </Box>
     <Box>
       <strong>Beschreibung:</strong> {selectedBeacon && selectedBeacon.description}

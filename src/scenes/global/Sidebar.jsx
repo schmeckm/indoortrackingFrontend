@@ -202,7 +202,7 @@ const Sidebar = () => {
             />
             <Item
               title="Scanner"
-              to="/geography"
+              to="/scanner"
               icon={<QrCodeScannerIcon />}
               selected={selected}
               setSelected={setSelected}
