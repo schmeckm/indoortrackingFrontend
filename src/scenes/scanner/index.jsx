@@ -1,9 +1,9 @@
 import { Box, useTheme } from "@mui/material";
-import GeographyChart from "../../components/GeographyChart";
+import GeographyChart from "../../components/scanner";
 import Header from "../../components/Header";
 import { tokens } from "../../theme";
 
-const Geography = () => {
+const Scanner = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -21,4 +21,4 @@ const Geography = () => {
   );
 };
 
-export default Geography;
+export default Scanner;

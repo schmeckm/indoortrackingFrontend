@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { ColorModeContext, useMode } from './theme';
-import { auth } from './config/firebase'; // Stellen Sie sicher, dass Sie Ihre Firebase-Konfiguration hier importieren
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Auth from './components/Auth';
+import LandingPage from './components/LandingPage';
 import Topbar from './scenes/global/Topbar';
 import Sidebar from './scenes/global/Sidebar';
 import Dashboard from './scenes/dashboard';
@@ -14,36 +13,22 @@ import Gateways from './scenes/gateways';
 import Beacons from './scenes/beacons';
 import Position from './scenes/position';
 import PositionA from './scenes/postionall';
-import Temperature from './scenes/linedate';
 import Scanner from './scenes/scanner';
-import Middleware from './scenes/middleware';
+import Temperature from './scenes/linedate';
 import Bar from './scenes/bar';
 import Form from './scenes/form';
 import Line from './scenes/line';
 import Pie from './scenes/pie';
 import FAQ from './scenes/faq';
+import Geography from './scenes/geography';
 import MapPage from './scenes/position/MapPage';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { ColorModeContext, useMode } from './theme';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 
 function App() {
     const [theme, colorMode] = useMode();
     const [isSidebar, setIsSidebar] = useState(true);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            if (user) {
-                // Der Benutzer ist angemeldet
-                console.log("Auth state changed: true");
-                setIsAuthenticated(true);
-            } else {
-                // Der Benutzer ist nicht angemeldet
-                console.log("Auth state changed: false");
-                setIsAuthenticated(false);
-            }
-        });
-
-        return () => unsubscribe();
-    }, []);
 
     return ( <
         ColorModeContext.Provider value = { colorMode } >
@@ -52,6 +37,8 @@ function App() {
         <
         CssBaseline / >
         <
+        Auth >
+        <
         div className = "app" >
         <
         Sidebar isSidebar = { isSidebar }
@@ -59,30 +46,32 @@ function App() {
         main className = "content" >
         <
         Topbar setIsSidebar = { setIsSidebar }
-        isAuthenticated = { isAuthenticated }
         /> <
         Routes >
         <
         Route path = "/"
+        element = { < LandingPage / > }
+        /> <
+        Route path = "/dashboard"
         element = { < Dashboard / > }
         /> <
         Route path = "/team"
         element = { < Team / > }
         /> <
+        Route path = "/contacts"
+        element = { < Contacts / > }
+        /> <
         Route path = "/environment"
         element = { < Environment / > }
-        /> <
-        Route path = "/gateways"
-        element = { < Gateways / > }
         /> <
         Route path = "/environmentDetail/:id"
         element = { < EnvironmentDetail / > }
         /> <
+        Route path = "/gateways"
+        element = { < Gateways / > }
+        /> <
         Route path = "/beacon"
         element = { < Beacons / > }
-        /> <
-        Route path = "/Middleware"
-        element = { < Middleware / > }
         /> <
         Route path = "/position"
         element = { < Position / > }
@@ -93,14 +82,14 @@ function App() {
         Route path = "/temperature"
         element = { < Temperature / > }
         /> <
-        Route path = "/contacts"
-        element = { < Contacts / > }
-        /> <
-        Route path = "/form"
-        element = { < Form / > }
+        Route path = "/scanner"
+        element = { < Scanner / > }
         /> <
         Route path = "/bar"
         element = { < Bar / > }
+        /> <
+        Route path = "/form"
+        element = { < Form / > }
         /> <
         Route path = "/pie"
         element = { < Pie / > }
@@ -111,8 +100,8 @@ function App() {
         Route path = "/faq"
         element = { < FAQ / > }
         /> <
-        Route path = "/scanner"
-        element = { < Scanner / > }
+        Route path = "/geography"
+        element = { < Geography / > }
         /> <
         Route path = "/map"
         element = { < MapPage / > }
@@ -120,8 +109,9 @@ function App() {
         Routes > <
         /main> < /
         div > <
-        /ThemeProvider> < /
-        ColorModeContext.Provider >
+        /Auth> < /
+        ThemeProvider > <
+        /ColorModeContext.Provider>
     );
 }
 

@@ -1,0 +1,92 @@
+.landing-container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.image-section {
+    flex-grow: 1;
+    /* Weitere Stile für das Bild */
+}
+
+.login-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Ändern Sie die Größe der Eingabefelder */
+
+.login-section .MuiTextField-root {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+    outline: 2px solid #ccc;
+}
+
+
+/* Entfernen Sie den Rahmen der Eingabefelder bei Fokussierung */
+
+.login-section .MuiInput-root:focus {
+    border: none;
+    outline: none;
+}
+
+
+/* Fügen Sie einen unterstrichenen Fokus hinzu */
+
+.login-section .MuiInput-underline:before {
+    border-bottom: 2px solid #1976D2;
+}
+
+
+/* Stile für die Buttons */
+
+.login-section .btn {
+    width: 100%;
+    max-width: 300px;
+    /* Ändern Sie die Breite nach Bedarf */
+    margin-bottom: 10px;
+    /* Abstand zwischen den Buttons */
+}
+
+
+/* Responsive Anpassungen */
+
+@media (max-width: 768px) {
+    .landing-container {
+        flex-direction: column;
+    }
+}
+
+
+/* Stile speziell für den "Sign with Google"-Button */
+
+.login-section .btn-google {
+    height: 60px;
+    /* Ändern Sie die Höhe nach Bedarf */
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    /* Anpassen Sie den Abstand nach Bedarf */
+}
+
+.image {
+    flex: 1;
+    /* Das Bild nimmt 50% des verfügbaren Platzes ein */
+    margin-right: 20px;
+    /* Abstand zwischen Bild und Login */
+}
+
+.login {
+    flex: 1;
+    /* Der Login-Bereich nimmt ebenfalls 50% des verfügbaren Platzes ein */
+    /* Stil für den Login-Bereich hinzufügen */
+}

@@ -1,5 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../config/firebase';
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -21,6 +22,10 @@ import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import WebhookIcon from '@mui/icons-material/Webhook';
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import defaultUserImage from './unknown.jpg';
+import { getDoc, doc } from 'firebase/firestore';
+import { db } from '../../config/firebase'; // Firebase-Konfiguration
+
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -45,6 +50,42 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const [userName, setUserName] = useState('Unbekannter Benutzer');
+  const [userPhoto, setUserPhoto] = useState('./unknown.jpg'); // Default-Bild
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Benutzer ist angemeldet
+        setUserName(user.displayName || 'Unbekannter Benutzer');
+        setUserPhoto(user.photoURL || defaultUserImage);
+
+        // Benutzerdaten aus Firestore abrufen
+        const userDocRef = doc(db, "users", user.uid);
+        getDoc(userDocRef)
+          .then((docSnap) => {
+            if (docSnap.exists()) {
+              // Benutzerdaten aus Firestore abrufen
+              const userData = docSnap.data();
+              const firstName = userData.firstName || '';
+              const lastName = userData.lastName || '';
+              const fullName = `${firstName} ${lastName}`;
+              setUserName(fullName);
+              console.log(fullName);
+            }
+          })
+          .catch((error) => {
+            console.error("Error getting user data from Firestore:", error);
+          });
+      } else {
+        // Benutzer ist nicht angemeldet
+        setUserName('Unbekannter Benutzer');
+        setUserPhoto(defaultUserImage);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [])
 
   return (
     <Box
@@ -114,18 +155,18 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.jpg`}
+                  src={userPhoto}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h3"
+                  variant="h4"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  M.Schmeckenbecher
+                  {userName}
                 </Typography>
                 <Typography
                   variant="h3"
@@ -138,7 +179,7 @@ const Sidebar = () => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
-              to="/"
+              to="/Dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

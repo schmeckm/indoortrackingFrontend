@@ -5,57 +5,77 @@ import { Button } from "react-bootstrap";
 import { useUserAuth } from "../contexts/UserAuthContext";
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [password, setPassword] = useState("");
-  const { signUp } = useUserAuth();
-  let navigate = useNavigate();
+        const [email, setEmail] = useState("");
+        const [error, setError] = useState("");
+        const [password, setPassword] = useState("");
+        const { signUp } = useUserAuth();
+        let navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await signUp(email, password);
-      navigate("/");
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+        const handleSubmit = async(e) => {
+            e.preventDefault();
+            setError("");
+            try {
+                await signUp(email, password);
+                navigate("/");
+            } catch (err) {
+                setError(err.message);
+            }
+        };
 
-  return (
-    <>
-      <div className="p-4 box">
-        <h2 className="mb-3">Firebase Auth Signup</h2>
-        {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="email"
-              placeholder="Email address"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
+        return ( <
+            >
+            <
+            div className = "p-4 box" >
+            <
+            h2 className = "mb-3" > Firebase / React Auth Signup < /h2>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
+            {
+                error && < Alert variant = "danger" > { error } < /Alert>}
 
-          <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
-              Sign up
-            </Button>
-          </div>
-        </Form>
-      </div>
-      <div className="p-4 box mt-3 text-center">
-        Already have an account? <Link to="/">Log In</Link>
-      </div>
-    </>
-  );
-};
+                <
+                Form onSubmit = { handleSubmit } >
 
-export default Signup;
+                    <
+                    Form.Group className = "mb-3"
+                controlId = "formBasicEmail" >
+                    <
+                    Form.Control
+                type = "email"
+                placeholder = "Email address"
+                onChange = {
+                    (e) => setEmail(e.target.value)
+                }
+                /> < /
+                Form.Group >
+
+                    <
+                    Form.Group className = "mb-3"
+                controlId = "formBasicPassword" >
+                    <
+                    Form.Control
+                type = "password"
+                placeholder = "Password"
+                onChange = {
+                    (e) => setPassword(e.target.value)
+                }
+                /> < /
+                Form.Group >
+
+                    <
+                    div className = "d-grid gap-2" >
+                    <
+                    Button variant = "primary"
+                type = "Submit" >
+                    Sign up <
+                    /Button> < /
+                    div > <
+                    /Form> < /
+                    div > <
+                    div className = "p-4 box mt-3 text-center" >
+                    Already have an account ? < Link to = "/" > Log In < /Link> < /
+                    div > <
+                    />
+            );
+        };
+
+        export default Signup;

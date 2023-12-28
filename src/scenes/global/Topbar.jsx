@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Box, IconButton, useTheme } from '@mui/material';
+import { Box, IconButton, useTheme, Snackbar, Alert} from '@mui/material';
 import { ColorModeContext, tokens } from '../../theme';
 import InputBase from '@mui/material/InputBase';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
@@ -18,19 +18,30 @@ const Topbar = () => {
     const colorMode = useContext(ColorModeContext);
     const [logoutMessage, setLogoutMessage] = useState('');
     const navigate = useNavigate(); // Verwende useNavigate, um auf die navigate-Funktion zuzugreifen
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('info');
 
     // Funktion zum Ausloggen
     const handleLogout = async () => {
         try {
-            await auth.signOut(); // Firebase-Logout aufrufen
-            setLogoutMessage('Logout erfolgreich.'); // Erfolgsmeldung setzen
-            setTimeout(() => {
-                setLogoutMessage(''); // Erfolgsmeldung nach einigen Sekunden löschen
-                navigate('/signin'); // Auf die Google-Login-Seite umleiten
-            }, 2000); // Nach 2 Sekunden umleiten
+            await auth.signOut();
+            setSnackbarMessage('Logout erfolgreich.');
+            setSnackbarSeverity('success');
+            navigate('/login'); // Passen Sie diesen Pfad an Ihre Login-Route an
         } catch (error) {
             console.error('Fehler beim Ausloggen:', error);
+            setSnackbarMessage('Fehler beim Ausloggen.');
+            setSnackbarSeverity('error');
         }
+        setOpenSnackbar(true);
+    };
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSnackbar(false);
     };
 
     return (
@@ -69,6 +80,15 @@ const Topbar = () => {
                     <ExitToAppIcon /> {/* Logout-Icon */}
                 </IconButton>
                 {logoutMessage && <p>{logoutMessage}</p>} {/* Erfolgsmeldung anzeigen */}
+                <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
             </Box>
         </Box>
     );

@@ -8,7 +8,7 @@ const Geography = () => {
   const colors = tokens(theme.palette.mode);
   return (
     <Box m="20px">
-      <Header title="Scanner" subtitle="QR Code Scanner" />
+      <Header title="Scanner" subtitle="QR Code Scanner 2222222222" />
 
       <Box
         height="75vh"
