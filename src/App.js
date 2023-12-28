@@ -14,6 +14,7 @@ import Beacons from './scenes/beacons';
 import Position from './scenes/position';
 import PositionA from './scenes/postionall';
 import Scanner from './scenes/scanner';
+import Middleware from './scenes/middleware';
 import Temperature from './scenes/linedate';
 import Bar from './scenes/bar';
 import Form from './scenes/form';
@@ -24,7 +25,6 @@ import Geography from './scenes/geography';
 import MapPage from './scenes/position/MapPage';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from './theme';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 
 function App() {
     const [theme, colorMode] = useMode();
@@ -84,6 +84,9 @@ function App() {
         /> <
         Route path = "/scanner"
         element = { < Scanner / > }
+        /><
+        Route path = "/middleware"
+        element = { < Middleware / > }
         /> <
         Route path = "/bar"
         element = { < Bar / > }

@@ -73,9 +73,10 @@ const Topbar = () => {
                 <IconButton>
                     <SettingsOutlinedIcon />
                 </IconButton>
-                <IconButton>
-                    <PersonOutlinedIcon />
-                </IconButton>
+                <IconButton onClick={() => navigate('/form')}>
+    <PersonOutlinedIcon />
+</IconButton>
+
                 <IconButton onClick={handleLogout}>
                     <ExitToAppIcon /> {/* Logout-Icon */}
                 </IconButton>
