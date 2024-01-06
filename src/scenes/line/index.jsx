@@ -1,16 +1,16 @@
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
-import LineChart from "../../components/LineChart";
+import MqttComponent from "../../components/MqttComponent";
 
-const Line = () => {
+const MQTT = () => {
   return (
     <Box m="20px">
-      <Header title="Line Chart" subtitle="Simple Line Chart" />
+      <Header title="MQTT_Component" />
       <Box height="75vh">
-        <LineChart />
+        <MqttComponent />
       </Box>
     </Box>
   );
 };
 
-export default Line;
+export default MQTT;

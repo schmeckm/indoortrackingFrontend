@@ -36,7 +36,9 @@
         "formik": "^2.2.9",
         "jsqr": "^1.4.0",
         "leaflet": "^1.9.4",
-        "mqtt": "^5.3.1",
+        "leaflet.gridlayer.googlemutant": "^0.14.0",
+        "mqtt": "^5.3.4",
+        "os-browserify": "^0.3.0",
         "path": "^0.12.7",
         "quagga": "^0.12.1",
         "react": "^18.2.0",
@@ -51,6 +53,7 @@
         "react-router-dom": "6",
         "react-scripts": "^5.0.1",
         "react-webcam": "^7.1.1",
+        "recharts": "^2.10.3",
         "validator": "^13.11.0",
         "web-vitals": "^2.1.4",
         "yup": "^0.32.11"
@@ -80,6 +83,7 @@
         ]
     },
     "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "react-native-dotenv": "^3.4.9"
     }
 }

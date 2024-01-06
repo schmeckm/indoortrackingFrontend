@@ -2,27 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {
-  TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  FormLabel,
-  FormControlLabel,
-  Switch,
-  Slider,
-  Typography,
-  AppBar,
-  Tabs,
-  Tab,
-  Grid,
-  Button,
-  FormGroup,
-  Snackbar,
+  TextField, Select, MenuItem, FormControl, FormLabel, FormControlLabel, Switch,
+  Slider, Typography, AppBar, Tabs, Tab, Grid, Button, FormGroup, Snackbar,
 } from '@material-ui/core';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@mui/material';
+
+
 const API_URL = 'http://192.168.1.128:3002/api/environment';
 
 const useStyles = makeStyles((theme) => ({
@@ -57,14 +45,17 @@ const Search = ({ onSearch }) => {
   );
 };
 
-function SetViewOnClick({ coords }) {
-  const map = useMap();
-  map.setView(coords, map.getZoom());
+function SetViewOnClick({ map, coords }) {
+  useEffect(() => {
+    if (map) {
+      map.setView(coords, map.getZoom());
+    }
+  }, [map, coords]);
 
   return null;
 }
 
-const DetailPage = () => {
+const EnvironmentDetail = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [currentTab, setCurrentTab] = useState(0);
@@ -77,7 +68,10 @@ const DetailPage = () => {
   const [scale, setScale] = useState(1);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [imagePosition, setImagePosition] = useState({ lat: 51.505, lng: -0.09 });
+  const [isDragging, setIsDragging] = useState(false);
   const classes = useStyles();
+  const [map, setMap] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -148,13 +142,58 @@ const DetailPage = () => {
     }
   };
 
-  if (!data) return <div>Loading...</div>;
+  // Function to generate the style for the image overlay
+  const getImageOverlayStyle = () => {
+    if (!selectedFile) return {};
+
+    return {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      zIndex: 1000, // Ensure it's above the map tiles
+      transform: `translate(-50%, -50%) rotate(${rotation}deg) scale(${scale})`,
+      width: '100%',
+      height: '100%',
+      backgroundImage: `url(${URL.createObjectURL(selectedFile)})`,
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
+      opacity: 1,
+      cursor: isDragging ? 'grabbing' : 'grab', // Zeigt den Verschiebungszeiger während des Ziehens
+    };
+  };
+
+  const handleImageMouseMove = (e) => {
+    if (isDragging) {
+      const { clientX, clientY } = e;
+      if (map) {
+        const newImagePosition = map.containerPointToLatLng([clientX, clientY]);
+        setImagePosition(newImagePosition);
+      }
+    }
+  };
+
+  const handleImageMouseUp = () => {
+    if (isDragging) {
+      const { lat, lng } = imagePosition;
+      console.log(`Final Position - Latitude: ${lat}, Longitude: ${lng}`);
+    }
+    setIsDragging(false);
+  };
+
+  const handleImageMouseDown = (e) => {
+    setIsDragging(true);
+    const { clientX, clientY } = e;
+    if (map) {
+      const newImagePosition = map.containerPointToLatLng([clientX, clientY]);
+      setImagePosition(newImagePosition);
+    }
+  };
 
   return (
     <Box m={2}>
       <AppBar position="static">
         <Tabs value={currentTab} onChange={handleTabChange}>
-          <Tab label={data.description} />
+        <Tab label={data ? data.description : 'Loading...'} />
           <Tab label="Tab 2" />
         </Tabs>
       </AppBar>
@@ -236,35 +275,25 @@ const DetailPage = () => {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <div style={{ position: 'relative', height: '400px', width: '100%' }}>
+              <MapContainer center={position} zoom={13} style={{ height: '400px', width: '100%' }} whenCreated={setMap}>
+                <SetViewOnClick map={map} coords={position} />
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                <Marker position={position}>
+                  <Popup>A marker.</Popup>
+                </Marker>
+                {/* Hier ist die Verwendung von useMap innerhalb des MapContainer */}
                 {selectedFile && (
                   <div
                     className="image-overlay"
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      zIndex: 1,
-                      transform: `translate(-50%, -50%) rotate(${rotation}deg) scale(${scale})`,
-                      width: '100%',
-                      height: '100%',
-                      backgroundImage: `url(${URL.createObjectURL(selectedFile)})`,
-                      backgroundSize: 'contain',
-                      backgroundRepeat: 'no-repeat',
-                      opacity: 1,
-                    }}
+                    style={getImageOverlayStyle()}
+                    onMouseDown={handleImageMouseDown}
+                    onMouseMove={handleImageMouseMove}
+                    onMouseUp={handleImageMouseUp}
                   />
                 )}
-                <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }}>
-                  <SetViewOnClick coords={position} />
-                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                  <Marker position={position}>
-                    <Popup>A marker.</Popup>
-                  </Marker>
-                </MapContainer>
-                <Search onSearch={search} />
-                {errorMessage && <div>Error: {errorMessage}</div>}
-              </div>
+              </MapContainer>
+              <Search onSearch={search} />
+              {errorMessage && <div>Error: {errorMessage}</div>}
             </Grid>
           </Grid>
         )}
@@ -285,4 +314,4 @@ const DetailPage = () => {
   );
 };
 
-export default DetailPage;
+export default EnvironmentDetail;

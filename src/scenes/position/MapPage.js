@@ -33,7 +33,7 @@ const MapPage = () => {
         markerRef.current = L.marker([lat, lon], { icon: customIcon }).addTo(mapRef.current);
 
         // Laden und Hinzufügen der GeoJSON-Daten zur Karte
-        fetch('react-admin-dashboard\public\assets\building.geojson')
+        fetch('assets/building.geojson')
             .then(response => {
                 console.log(response);
                 return response.json();
@@ -44,7 +44,6 @@ const MapPage = () => {
             .catch(error => {
                 console.error('Error loading GeoJSON: ', error);
             });
-
     }, [lat, lon, view]);
 
     return <div ref = { containerRef }
